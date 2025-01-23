@@ -15,7 +15,7 @@ namespace Application.Activities
 
         public class Handler : IRequestHandler<Query, List<Activity>>
         {
-        public readonly DataContext _context;
+            private readonly DataContext _context;
             
             public Handler(DataContext context)
             {
@@ -23,7 +23,7 @@ namespace Application.Activities
             }
             public async Task<List<Activity>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Activities.ToListAsync();
+                return await _context.Activities.ToListAsync(cancellationToken: cancellationToken);
             }
         }
     }
